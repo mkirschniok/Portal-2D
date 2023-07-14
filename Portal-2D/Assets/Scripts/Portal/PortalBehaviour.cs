@@ -9,7 +9,7 @@ public class PortalBehaviour : MonoBehaviour
     Tilemap tilemap;
     Tilemap impostorTilemap;
     const int portalGridHeight = 6;
-    const int portalGridWidth = 2;
+    const int portalGridWidth = 4;
 
     void Start()
     {
