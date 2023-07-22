@@ -23,8 +23,9 @@ public class CloneAnimSync : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void StartAnim(GameObject source)
     {
+        animSourceObject = source;
         cloneAnimList = new List<CloneAnimPair>();
         if( animSourceObject == null || animDestRoot == null )
             return;
@@ -52,13 +53,6 @@ public class CloneAnimSync : MonoBehaviour
             pair.source.transform.GetLocalPositionAndRotation(out var localPos, out var localRot);
             // Clone local pose to destination transform in one operation.
             pair.clone.transform.SetLocalPositionAndRotation(localPos, localRot);
-
-
-            //pair.clone.transform.localPosition    = pair.source.transform.localPosition;
-            //pair.clone.transform.localEulerAngles = pair.source.transform.localEulerAngles;
-            //pair.clone.transform.localScale       = pair.source.transform.localScale;
-
-            //UnityEngine.Debug.Log("Copy transform!");
         }
     }
 }
