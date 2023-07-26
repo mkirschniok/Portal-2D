@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     eMovementState movementState;
     Animator       animator;
     float          dirX = 0f;
+    float          dirXMultiplier = 1.0f;
     float          cubeSavedMass = 0;
     bool           isJumping = false;
     bool           isFacingRight = true;
@@ -47,6 +48,10 @@ public class PlayerMovement : MonoBehaviour
     {
         return Mathf.Abs( dirX ) >= 0.1f;
     }
+    public void InverseXMovementAxis()
+    {
+        dirXMultiplier = -1f;
+    }
 
     void Start()
     {
@@ -57,7 +62,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
+        dirX = Input.GetAxisRaw("Horizontal") * dirXMultiplier;
+        if (dirX==0)
+            dirXMultiplier = 1.0f;
 
         if ( IsTouchingGround() && Input.GetButtonDown("Jump") )
         {
